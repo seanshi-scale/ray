@@ -962,7 +962,9 @@ def test_runtime_env_interface():
 
 
 if __name__ == "__main__":
-    import sys
+    # TODO(can): No ray wheel for python 3.12
+    if sys.version_info >= (3, 12):
+        sys.exit(0)
 
     if os.environ.get("PARALLEL_CI"):
         sys.exit(pytest.main(["-n", "auto", "--boxed", "-vs", __file__]))
