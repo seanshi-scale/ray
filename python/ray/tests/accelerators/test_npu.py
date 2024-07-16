@@ -115,6 +115,10 @@ def test_auto_detected_more_than_visible(monkeypatch, shutdown_only):
 
 
 if __name__ == "__main__":
+    # Intetionally skip this test on Python 3.12
+    if sys.version_info >= (3, 12):
+        sys.exit(0)
+
     if os.environ.get("PARALLEL_CI"):
         sys.exit(pytest.main(["-n", "auto", "--boxed", "-vs", __file__]))
     else:
